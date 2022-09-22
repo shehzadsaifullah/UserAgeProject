@@ -7,8 +7,10 @@ const InputForm = (props) => {
   const [userAge, setUserAge] = useState("");
 
   const submitHandler = (event) => {
-    props.reciveUserData(userName, userAge);
     event.preventDefault();
+    props.reciveUserData(userName, userAge);
+    setUserName("");
+    setUserAge("");
   };
 
   const nameHandler = (event) => {
@@ -23,12 +25,22 @@ const InputForm = (props) => {
       <div className={classes.input}>
         <form onSubmit={submitHandler}>
           <div>
-            <label>Name</label>
-            <input name="name" onChange={nameHandler}></input>
+            <label htmlFor="username">Name</label>
+            <input
+              id="username"
+              value={userName}
+              name="name"
+              onChange={nameHandler}
+            ></input>
           </div>
           <div>
-            <label>Age</label>
-            <input name="age" onChange={ageHandler}></input>
+            <label htmlFor="userage">Age</label>
+            <input
+              id="userage"
+              value={userAge}
+              name="age"
+              onChange={ageHandler}
+            ></input>
           </div>
           <button className={classe.button} type="submit">
             Add User
