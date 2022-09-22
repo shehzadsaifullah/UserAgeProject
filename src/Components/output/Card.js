@@ -1,9 +1,11 @@
 const Card = (props) => {
   return (
-    <div>
-      <div>{props.name}</div>
-      <div>{props.age}</div>
-    </div>
+    <ul>
+      <li>
+        <div>{props.name}</div>
+        <div>{props.age}</div>
+      </li>
+    </ul>
   );
 };
 export default Card;
