@@ -8,6 +8,13 @@ const InputForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    if (userName.trim().length === 0 || userAge.trim().length === 0) {
+      return;
+    }
+    if (+userAge < 1) {
+      //the + turns userAge into a number from the string
+      return;
+    }
     props.reciveUserData(userName, userAge);
     setUserName("");
     setUserAge("");
