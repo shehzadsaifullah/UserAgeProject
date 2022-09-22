@@ -3,7 +3,7 @@ import InputForm from "./Components/inputForm/InputForm";
 import Output from "./Components/output/Output";
 
 function App() {
-  const user = [
+  const users = [
     {
       name: "Jimmy",
       age: "28",
@@ -13,7 +13,7 @@ function App() {
       age: "32",
     },
   ];
-  const [userArray, setUserArray] = useState(user);
+  const [userArray, setUserArray] = useState(users);
 
   const userDataHandler = (name, age) => {
     setUserArray((prevExpenses) => {
@@ -26,7 +26,7 @@ function App() {
   return (
     <div>
       <InputForm reciveUserData={userDataHandler} />
-      <Output userList={user} />
+      <Output userList={userArray} />
     </div>
   );
 }

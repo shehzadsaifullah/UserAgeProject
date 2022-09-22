@@ -1,10 +1,11 @@
 //import { useState } from "react";
 import Card from "./Card";
+import classes from "./Outcard.module.css";
 
 const Output = (props) => {
   //const [dummy, setDummy] = useState(props.d);
   return (
-    <div>
+    <div className={classes.output}>
       {props.userList.map((user) => (
         <div>
           <Card name={user.name} age={user.age} />
