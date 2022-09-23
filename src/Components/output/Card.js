@@ -1,6 +1,8 @@
+import classes from "./Outcard.module.css";
+
 const Card = (props) => {
   return (
-    <ul>
+    <ul className={classes.users}>
       <div>
         {props.name} is {props.age} years old
       </div>
