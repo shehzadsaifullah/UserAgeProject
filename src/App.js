@@ -3,16 +3,7 @@ import InputForm from "./Components/inputForm/InputForm";
 import Output from "./Components/output/Output";
 
 function App() {
-  const users = [
-    {
-      name: "Jimmy",
-      age: "28",
-    },
-    {
-      name: "Peter",
-      age: "32",
-    },
-  ];
+  const users = [];
   const [userArray, setUserArray] = useState(users);
 
   const userDataHandler = (name, age) => {

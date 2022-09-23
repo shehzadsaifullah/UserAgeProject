@@ -1,10 +1,9 @@
 const Card = (props) => {
   return (
     <ul>
-      <li>
-        <div>{props.name}</div>
-        <div>{props.age}</div>
-      </li>
+      <div>
+        {props.name} is {props.age} years old
+      </div>
     </ul>
   );
 };
