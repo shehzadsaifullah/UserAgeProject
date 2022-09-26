@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./Intput.module.css";
 import classe from "./Button.module.css";
+import ErrorModal from "../ErrorModal";
 // import Button from "./Button";
 const InputForm = (props) => {
   const [userName, setUserName] = useState("");
@@ -28,33 +29,39 @@ const InputForm = (props) => {
   };
 
   return (
-    <div className={classes.card}>
-      <div className={classes.input}>
-        <form onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="username">Name</label>
-            <input
-              id="username"
-              value={userName}
-              name="name"
-              onChange={nameHandler}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="userage">Age</label>
-            <input
-              id="userage"
-              value={userAge}
-              name="age"
-              onChange={ageHandler}
-            ></input>
-          </div>
-          <button className={classe.button} type="submit">
-            Add User
-          </button>
-        </form>
+    <>
+      <ErrorModal
+        title="An Error!"
+        message="something bad must have happened"
+      />
+      <div className={classes.card}>
+        <div className={classes.input}>
+          <form onSubmit={submitHandler}>
+            <div>
+              <label htmlFor="username">Name</label>
+              <input
+                id="username"
+                value={userName}
+                name="name"
+                onChange={nameHandler}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="userage">Age</label>
+              <input
+                id="userage"
+                value={userAge}
+                name="age"
+                onChange={ageHandler}
+              ></input>
+            </div>
+            <button className={classe.button} type="submit">
+              Add User
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

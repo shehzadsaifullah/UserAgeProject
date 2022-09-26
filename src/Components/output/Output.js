@@ -1,4 +1,5 @@
 //import { useState } from "react";
+
 import Card from "./Card";
 import classes from "./Outcard.module.css";
 
@@ -7,7 +8,7 @@ const Output = (props) => {
   return (
     <div className={classes.output}>
       {props.userList.map((user) => (
-        <div>
+        <div key={user.id}>
           <Card name={user.name} age={user.age} />
         </div>
       ))}
