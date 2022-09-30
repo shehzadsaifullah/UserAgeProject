@@ -6,13 +6,22 @@ import ErrorModal from "../ErrorModal";
 const InputForm = (props) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
+  const [error, setError] = useState();
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (userName.trim().length === 0 || userAge.trim().length === 0) {
+      setError({
+        title: "invalid Input - name",
+        message: "please enter valid name",
+      });
       return;
     }
     if (+userAge < 1) {
+      setError({
+        title: "invalid Input - age",
+        message: "please enter valid age",
+      });
       //the + turns userAge into a number from the string
       return;
     }
@@ -27,13 +36,19 @@ const InputForm = (props) => {
   const ageHandler = (event) => {
     setUserAge(event.target.value);
   };
+  const okayButton = () => {
+    setError(null);
+  };
 
   return (
     <>
-      <ErrorModal
-        title="An Error!"
-        message="something bad must have happened"
-      />
+      {error && (
+        <ErrorModal
+          ackOkay={okayButton}
+          title={error.title}
+          message={error.message}
+        />
+      )}
       <div className={classes.card}>
         <div className={classes.input}>
           <form onSubmit={submitHandler}>
