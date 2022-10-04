@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./Intput.module.css";
 import classe from "./Button.module.css";
 import ErrorModal from "../ErrorModal";
 // import Button from "./Button";
 const InputForm = (props) => {
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
   const [error, setError] = useState();
 
   const submitHandler = (event) => {
     event.preventDefault();
+    console.log(nameInputRef.current);
     if (userName.trim().length === 0 || userAge.trim().length === 0) {
       setError({
         title: "invalid Input - name",
@@ -22,7 +26,7 @@ const InputForm = (props) => {
         title: "invalid Input - age",
         message: "please enter valid age",
       });
-      //the + turns userAge into a number from the string
+      //the + turns userAge into a nu mber from the string
       return;
     }
     props.reciveUserData(userName, userAge);
@@ -44,7 +48,7 @@ const InputForm = (props) => {
     <>
       {error && (
         <ErrorModal
-          ackOkay={okayButton}
+          onConfirm={okayButton}
           title={error.title}
           message={error.message}
         />
@@ -59,6 +63,7 @@ const InputForm = (props) => {
                 value={userName}
                 name="name"
                 onChange={nameHandler}
+                ref={nameInputRef}
               ></input>
             </div>
             <div>
@@ -68,6 +73,7 @@ const InputForm = (props) => {
                 value={userAge}
                 name="age"
                 onChange={ageHandler}
+                ref={ageInputRef}
               ></input>
             </div>
             <button className={classe.button} type="submit">
