@@ -7,21 +7,20 @@ const InputForm = (props) => {
   const nameInputRef = useRef();
   const ageInputRef = useRef();
 
-  const [userName, setUserName] = useState("");
-  const [userAge, setUserAge] = useState("");
   const [error, setError] = useState();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(nameInputRef.current);
-    if (userName.trim().length === 0 || userAge.trim().length === 0) {
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
+    if (enteredName.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
         title: "invalid Input - name",
         message: "please enter valid name",
       });
       return;
     }
-    if (+userAge < 1) {
+    if (+enteredAge < 1) {
       setError({
         title: "invalid Input - age",
         message: "please enter valid age",
@@ -29,17 +28,11 @@ const InputForm = (props) => {
       //the + turns userAge into a nu mber from the string
       return;
     }
-    props.reciveUserData(userName, userAge);
-    setUserName("");
-    setUserAge("");
+    props.reciveUserData(enteredName, enteredAge);
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
   };
 
-  const nameHandler = (event) => {
-    setUserName(event.target.value);
-  };
-  const ageHandler = (event) => {
-    setUserAge(event.target.value);
-  };
   const okayButton = () => {
     setError(null);
   };
@@ -57,22 +50,22 @@ const InputForm = (props) => {
         <div className={classes.input}>
           <form onSubmit={submitHandler}>
             <div>
-              <label htmlFor="username">Name</label>
+              <label htmlFor="enteredname">Name</label>
               <input
-                id="username"
-                value={userName}
+                id="enteredname"
+                //value={enteredName}
                 name="name"
-                onChange={nameHandler}
+                //onChange={nameHandler}
                 ref={nameInputRef}
               ></input>
             </div>
             <div>
-              <label htmlFor="userage">Age</label>
+              <label htmlFor="enteredage">Age</label>
               <input
-                id="userage"
-                value={userAge}
+                id="enteredage"
+                //value={enteredAge}
                 name="age"
-                onChange={ageHandler}
+                //onChange={ageHandler}
                 ref={ageInputRef}
               ></input>
             </div>
